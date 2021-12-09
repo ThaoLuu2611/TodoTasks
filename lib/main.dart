@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
-
-void main() {
+import 'package:to_do_tasks/widgets/splash_screen.dart';
+import 'package:to_do_tasks/widgets/home.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+void main() async{
+  await Hive.initFlutter();
   runApp(
     MaterialApp(
-      title: 'Todo task',
+      title: 'Named Routes Demo',
       debugShowCheckedModeBanner: false,
-      home: Text('Todo tasks'),
+      initialRoute: '/',
+      routes: {
+        '/': (context) =>  SplashScreen(),//const Home
+        '/home': (context) => Home(),
+      },
+/*      home: RepositoryProvider(
+        create: (context) => AuthRepository(),
+        child: LoginView(),
+
+      ),*/
     ),
   );
 }
